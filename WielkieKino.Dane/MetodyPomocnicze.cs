@@ -43,12 +43,12 @@ namespace WielkieKino.Dane
             // np. nie można zagrać filmu "Egzamin" w sali Kameralnej 2019-01-20 o 17:00
             // można natomiast zagrać "Egzamin" w tej sali 2019-01-20 o 14:00
 
-            bool zm = true;
             foreach (var item in aktualneSeanse)
             {
-                if (item.Sala == sala && item.Film == film && item.Date == data) zm = false;
+                if (item.Sala == sala && item.Film == film && item.Date <= data && 
+                    item.Date.AddMinutes(item.Film.CzasTrwania) > data) return false;
             }
-            return zm;
+            return true;
         }
 
         /// <summary>

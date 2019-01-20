@@ -45,10 +45,10 @@ namespace WielkieKino.App
             //metodę AddMinutes wykonanej na czasie rozpoczęcia seansu.
             foreach (var item in seanse)
             {
-                if(data>=item.Date && data <= item.Date.AddMinutes(item.Film.CzasTrwania))
+                if(data>=item.Date && data < item.Date.AddMinutes(item.Film.CzasTrwania))
                 Console.WriteLine(item.Film.Tytul);
             }
-
+            Console.ReadKey();
         }
 
         public static void Main(string[] args)

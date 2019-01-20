@@ -16,14 +16,15 @@ namespace WielkieKino.Dane.Tests
         {
             MetodyPomocnicze met = new MetodyPomocnicze();
 
-            Assert.IsTrue(met.CzyMoznaKupicBilet(SkladDanych.Bilety, SkladDanych.Seanse[0], 2, 1) == false);
+            Assert.IsTrue(met.CzyMoznaKupicBilet(SkladDanych.Bilety, SkladDanych.Seanse[0], 2, 1) == true);
+            Assert.IsTrue(met.CzyMoznaKupicBilet(SkladDanych.Bilety, SkladDanych.Seanse[0], 5, 5) == false);
         }
 
         [TestMethod()]
         public void CzyMoznaDodacSeansTest()
         {
             MetodyPomocnicze met = new MetodyPomocnicze();
-            Assert.IsTrue(met.CzyMoznaDodacSeans(SkladDanych.Seanse,  SkladDanych.Sale[0], SkladDanych.Filmy[0], new DateTime(2019, 02, 20))==false);
+            Assert.IsTrue(met.CzyMoznaDodacSeans(SkladDanych.Seanse,  SkladDanych.Sale[0], SkladDanych.Filmy[0], new DateTime(2019, 01, 20, 13,00, 00))==false);
         }
 
         [TestMethod()]

@@ -93,7 +93,7 @@ namespace WielkieKino.Logic
         {
             return (from b in bilety
                     group b by b.Seans.Film into grouping
-                    select new { Film = grouping.Key, ilosc = grouping.Count() }).OrderBy(x=>x.ilosc).Select(x=>x.Film).ToList();
+                    select new { Film = grouping.Key, kasa = grouping.Sum(x=>x.Cena) }).OrderBy(x=>x.kasa).Select(x=>x.Film).ToList();
         }
 
 

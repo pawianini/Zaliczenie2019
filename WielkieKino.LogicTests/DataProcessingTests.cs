@@ -37,10 +37,6 @@ namespace WielkieKino.Logic.Tests
             Assert.IsTrue(dp.NajpopularniejszyGatunek(SkladDanych.Filmy) == "Obyczajowy");
         }
 
-        [TestMethod()]
-        public void WybierzFilmyPokazywaneDanegoDniaTest()
-        {
-            Assert.Fail();
-        }
+
     }
 }
