@@ -24,13 +24,13 @@ namespace WielkieKino.App
                 
                 for (int j = 1; j < seans.Sala.LiczbaMiejscWRzedzie + 1; j++)
                 {
-                    if (sprzedaneBilety.Where(x => x.Seans == seans).Count() != 0)
+                    if (sprzedaneBilety.Where(x => x.Seans == seans && x.Miejsce==j && x.Rzad==i).Count() != 0)
                         Console.Write("z");
                     else Console.Write("w");
                 }
                 Console.WriteLine();
             }
-          
+            Console.ReadKey();
         }
 
         /// <summary>
