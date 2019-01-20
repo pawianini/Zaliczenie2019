@@ -21,8 +21,12 @@ namespace WielkieKino.Dane
         /// <param name="miejsce"></param>
         /// <returns></returns>
         public bool CzyMoznaKupicBilet(List<Bilet> sprzedaneBilety, Seans seans, int rzad, int miejsce)
-        {
-            return false;
+        { 
+            foreach (var item in sprzedaneBilety)
+            {
+                if (item.Seans.Equals(seans) && item.Rzad == rzad && item.Miejsce == miejsce) return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -38,7 +42,13 @@ namespace WielkieKino.Dane
         {
             // np. nie można zagrać filmu "Egzamin" w sali Kameralnej 2019-01-20 o 17:00
             // można natomiast zagrać "Egzamin" w tej sali 2019-01-20 o 14:00
-            return false;
+
+
+            foreach (var item in aktualneSeanse)
+            {
+                if (item.Sala.Equals(sala) && item.Film.Equals(film)& item.Date==data) return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -50,13 +60,30 @@ namespace WielkieKino.Dane
         public int LiczbaWolnychMiejscWSali(List<Bilet> sprzedaneBilety, Seans seansDoSprawdzenia)
         {
             // Właściwa odpowiedź: np. na pierwszy seans z listy seansów w klasie SkladDanych są 72 miejsca
-            return 0;
+            int poj = seansDoSprawdzenia.Sala.LiczbaMiejscWRzedzie * seansDoSprawdzenia.Sala.LiczbaMiejscWRzedzie;
+            int spr=0;
+            foreach (var item in sprzedaneBilety)
+            {
+                if (item.Seans.Equals(seansDoSprawdzenia))
+                {
+                    spr ++;
+                }
+
+            }
+            return poj-spr;
         }
 
         public double CalkowitePrzychodyZBiletow(List<Bilet> sprzedaneBilety)
         {
             // Właściwa odpowiedź: 400.00
-            return 0.0;
+          
+            int suma=0;
+            foreach (var item in sprzedaneBilety)
+            {
+                suma += Convert.ToInt32(item.Cena);
+
+            }
+            return suma;
         }
     }
 }

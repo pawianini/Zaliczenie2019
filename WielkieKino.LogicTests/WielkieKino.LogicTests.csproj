@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{103884FE-27D7-4983-B863-C0EC10EE88F0}</ProjectGuid>
+    <ProjectGuid>{3D9D597A-14B9-4425-A995-167C3DE690DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WielkieKino.DaneTests</RootNamespace>
-    <AssemblyName>WielkieKino.DaneTests</AssemblyName>
+    <RootNamespace>WielkieKino.LogicTests</RootNamespace>
+    <AssemblyName>WielkieKino.LogicTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,20 +56,32 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="MetodyPomocniczeTests.cs" />
+    <Compile Include="DataProcessingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WielkieKino.App\WielkieKino.App.csproj">
+      <Project>{b61cdd01-7c41-45a5-b460-2fb06efb442b}</Project>
+      <Name>WielkieKino.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WielkieKino.DaneTests\WielkieKino.DaneTests.csproj">
+      <Project>{103884fe-27d7-4983-b863-c0ec10ee88f0}</Project>
+      <Name>WielkieKino.DaneTests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WielkieKino.Dane\WielkieKino.Dane.csproj">
-      <Project>{BEE3161F-C21F-4FCC-B73C-8146F7D207E8}</Project>
+      <Project>{bee3161f-c21f-4fcc-b73c-8146f7d207e8}</Project>
       <Name>WielkieKino.Dane</Name>
     </ProjectReference>
     <ProjectReference Include="..\WielkieKino.Lib\WielkieKino.Lib.csproj">
-      <Project>{FCB35363-BFE5-4984-8448-175C9CE54C8C}</Project>
+      <Project>{fcb35363-bfe5-4984-8448-175c9ce54c8c}</Project>
       <Name>WielkieKino.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WielkieKino.Logic\WielkieKino.Logic.csproj">
+      <Project>{E0232D1F-A35E-4459-8BD9-4827D38F2B2E}</Project>
+      <Name>WielkieKino.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -19,7 +19,18 @@ namespace WielkieKino.App
         /// <param name="seans"></param>
         private static void WyswietlPodgladSali(List<Bilet> sprzedaneBilety, Seans seans)
         {
-
+            for (int i = 1; i < seans.Sala.LiczbaRzedow+1; i++)
+            {
+                
+                for (int j = 1; j < seans.Sala.LiczbaMiejscWRzedzie + 1; j++)
+                {
+                    if (sprzedaneBilety.Where(x => x.Seans == seans).Count() != 0)
+                        Console.Write("z");
+                    else Console.Write("w");
+                }
+                Console.WriteLine();
+            }
+          
         }
 
         /// <summary>
@@ -32,6 +43,7 @@ namespace WielkieKino.App
         {
             //Wskazówka: Do obliczenia czy parametr data "wpada" w film można wykorzystać
             //metodę AddMinutes wykonanej na czasie rozpoczęcia seansu.
+
         }
 
         public static void Main(string[] args)

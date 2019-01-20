@@ -14,25 +14,30 @@ namespace WielkieKino.Dane.Tests
         [TestMethod()]
         public void CzyMoznaKupicBiletTest()
         {
-            Assert.Fail();
+            MetodyPomocnicze met = new MetodyPomocnicze();
+
+            Assert.IsTrue(met.CzyMoznaKupicBilet(SkladDanych.Bilety, SkladDanych.Seanse[0], 2, 1) == false);
         }
 
         [TestMethod()]
         public void CzyMoznaDodacSeansTest()
         {
-            Assert.Fail();
+            MetodyPomocnicze met = new MetodyPomocnicze();
+            Assert.IsTrue(met.CzyMoznaDodacSeans(SkladDanych.Seanse,  SkladDanych.Sale[0], SkladDanych.Filmy[0], new DateTime(2019, 02, 20))==false);
         }
 
         [TestMethod()]
         public void LiczbaWolnychMiejscWSaliTest()
         {
-            Assert.Fail();
+            MetodyPomocnicze met = new MetodyPomocnicze();
+            Assert.IsTrue(met.LiczbaWolnychMiejscWSali(SkladDanych.Bilety, SkladDanych.Seanse[0]) == 72);
         }
 
         [TestMethod()]
         public void CalkowitePrzychodyZBiletowTest()
         {
-            Assert.Fail();
+            MetodyPomocnicze met = new MetodyPomocnicze();
+            Assert.IsTrue(met.CalkowitePrzychodyZBiletow(SkladDanych.Bilety) == 400);
         }
     }
 }

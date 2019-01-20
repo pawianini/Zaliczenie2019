@@ -16,7 +16,8 @@ namespace WielkieKino.Logic
         public List<string> WybierzFilmyZGatunku(List<Film> filmy, string gatunek)
         {
             // Właściwa odpowiedź: np. "Konan Destylator" dla "Fantasy"
-            return null;
+            return (from f in filmy where f.Gatunek == gatunek select f.Tytul).ToList();
+                  
         }
 
         /// <summary>
@@ -27,12 +28,12 @@ namespace WielkieKino.Logic
         public int PodajCalkowiteWplywyZBiletow(List<Bilet> bilety)
         {
             // Właściwa odpowiedź: 400
-            return -1;
+            return (from b in bilety select b.Cena).Sum(x=>Convert.ToInt32(x));
         }
 
         public List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
         {
-            return null;
+            return (from s in seanse where s.Date==data select s.Film).Distinct().ToList();
         }
 
         /// <summary>
@@ -44,19 +45,24 @@ namespace WielkieKino.Logic
         public string NajpopularniejszyGatunek(List<Film> filmy)
         {
             // Właściwa odpowiedź: Obyczajowy
-            return null;
+            var x = (from f in filmy group f by f.Gatunek into gropuing select new { gatunek = gropuing.Key, ilosc = gropuing.Count() }).ToList();
+            int max = x.Max(a => a.ilosc);
+            return x.Where(g => g.ilosc == max).Select(a => a.gatunek).ToList().FirstOrDefault();
         }
 
         public List<Sala> ZwrocSalePosortowanePoCalkowitejLiczbieMiejsc(List<Sala> sale)
         {
             // Właściwa odpowiedź: Kameralna, Bałtyk, Wisła (lub w odwrotnej kolejności)
-            return null;
+            return sale.OrderBy(x=>x.LiczbaRzedow*x.LiczbaMiejscWRzedzie).ToList();
         }
 
         public Sala ZwrocSaleGdzieJestNajwiecejSeansow(List<Seans> seanse, DateTime data)
         {
             // Właściwa odpowiedź dla daty 2019-01-20: sala "Wisła" 
-            return null;
+
+           var x = (from s in seanse where s.Date == data group s by s.Sala into grouping select new { sala = grouping.Key, ilosc = grouping.Count() }).ToList() ;
+            int max = x.Max(a => a.ilosc);
+            return x.Where(a=>a.ilosc==max).Select(a => a.sala).ToList().FirstOrDefault();
         }
 
         /// <summary>
@@ -69,7 +75,11 @@ namespace WielkieKino.Logic
         public Film ZwrocFilmNaKtorySprzedanoNajwiecejBiletow(List<Film> filmy, List<Bilet> bilety)
         {
             // Właściwa odpowiedź: "Konan Destylator"
-            return null;
+            var x = (from b in bilety  group b by b.Seans.Film into grouping
+            select new { Film = grouping.Key, ilosc = grouping.Count() }).ToList();
+            int max = x.Max(a => a.ilosc);
+            return x.Where(a => a.ilosc == max).Select(a => a.Film).ToList().FirstOrDefault();
+         
         }
 
         /// <summary>
@@ -79,9 +89,11 @@ namespace WielkieKino.Logic
         /// <param name="filmy"></param>
         /// <param name="bilety"></param>
         /// <returns></returns>
-        public Film PosortujFilmyPoDochodach(List<Film> filmy, List<Bilet> bilety)
+        public List<Film> PosortujFilmyPoDochodach(List<Film> filmy, List<Bilet> bilety)
         {
-            return null;
+            return (from b in bilety
+                    group b by b.Seans.Film into grouping
+                    select new { Film = grouping.Key, ilosc = grouping.Count() }).OrderBy(x=>x.ilosc).Select(x=>x.Film).ToList();
         }
 
 

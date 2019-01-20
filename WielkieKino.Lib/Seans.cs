@@ -11,5 +11,7 @@ namespace WielkieKino.Lib
         public DateTime Date { get; set; }
         public Sala Sala { get; set; }
         public Film Film { get; set; }
+
+      
     }
 }
