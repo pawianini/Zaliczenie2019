@@ -25,16 +25,22 @@ namespace WielkieKino.Logic.Tests
         public void ZwrocSaleGdzieJestNajwiecejSeansowTest()
         {
             DataProcessing dp = new DataProcessing();
-            dp.ZwrocSaleGdzieJestNajwiecejSeansow(SkladDanych.Seanse, new DateTime(2019, 01, 20));
+
             Assert.IsTrue(dp.ZwrocSaleGdzieJestNajwiecejSeansow(SkladDanych.Seanse, new DateTime(2019, 01, 20)).Nazwa == "Wisła");
         }
 
         [TestMethod()]
         public void NajpopularniejszyGatunekTest()
         {
-               DataProcessing dp = new DataProcessing();
-            dp.NajpopularniejszyGatunek(SkladDanych.Filmy);
-            Assert.IsTrue(dp.NajpopularniejszyGatunek(SkladDanych.Filmy)=="Obyczajowy");
+            DataProcessing dp = new DataProcessing();
+
+            Assert.IsTrue(dp.NajpopularniejszyGatunek(SkladDanych.Filmy) == "Obyczajowy");
+        }
+
+        [TestMethod()]
+        public void WybierzFilmyPokazywaneDanegoDniaTest()
+        {
+            Assert.Fail();
         }
     }
 }

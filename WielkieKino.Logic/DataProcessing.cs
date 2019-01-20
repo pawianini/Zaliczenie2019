@@ -33,7 +33,7 @@ namespace WielkieKino.Logic
 
         public List<Film> WybierzFilmyPokazywaneDanegoDnia(List<Seans> seanse, DateTime data)
         {
-            return (from s in seanse where s.Date==data select s.Film).Distinct().ToList();
+            return (from s in seanse where s.Date.Date==data.Date select s.Film).Distinct().ToList();
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace WielkieKino.Logic
         {
             // Właściwa odpowiedź dla daty 2019-01-20: sala "Wisła" 
 
-           var x = (from s in seanse where s.Date == data group s by s.Sala into grouping select new { sala = grouping.Key, ilosc = grouping.Count() }).ToList() ;
+           var x = (from s in seanse where s.Date.Date == data.Date group s by s.Sala into grouping select new { sala = grouping.Key, ilosc = grouping.Count() }).ToList() ;
             int max = x.Max(a => a.ilosc);
             return x.Where(a=>a.ilosc==max).Select(a => a.sala).ToList().FirstOrDefault();
         }

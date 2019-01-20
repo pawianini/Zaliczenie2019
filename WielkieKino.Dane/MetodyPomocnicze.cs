@@ -24,7 +24,7 @@ namespace WielkieKino.Dane
         { 
             foreach (var item in sprzedaneBilety)
             {
-                if (item.Seans.Equals(seans) && item.Rzad == rzad && item.Miejsce == miejsce) return false;
+                if (item.Seans == seans && item.Rzad == rzad && item.Miejsce == miejsce) return false;
             }
             return true;
         }
@@ -43,12 +43,12 @@ namespace WielkieKino.Dane
             // np. nie można zagrać filmu "Egzamin" w sali Kameralnej 2019-01-20 o 17:00
             // można natomiast zagrać "Egzamin" w tej sali 2019-01-20 o 14:00
 
-
+            bool zm = true;
             foreach (var item in aktualneSeanse)
             {
-                if (item.Sala.Equals(sala) && item.Film.Equals(film)& item.Date==data) return false;
+                if (item.Sala == sala && item.Film == film && item.Date == data) zm = false;
             }
-            return true;
+            return zm;
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace WielkieKino.Dane
             int spr=0;
             foreach (var item in sprzedaneBilety)
             {
-                if (item.Seans.Equals(seansDoSprawdzenia))
+                if (item.Seans==seansDoSprawdzenia)
                 {
                     spr ++;
                 }

@@ -43,6 +43,11 @@ namespace WielkieKino.App
         {
             //Wskazówka: Do obliczenia czy parametr data "wpada" w film można wykorzystać
             //metodę AddMinutes wykonanej na czasie rozpoczęcia seansu.
+            foreach (var item in seanse)
+            {
+                if(data>=item.Date && data <= item.Date.AddMinutes(item.Film.CzasTrwania))
+                Console.WriteLine(item.Film.Tytul);
+            }
 
         }
 
@@ -59,6 +64,30 @@ namespace WielkieKino.App
             -----oo---
             ----------
             */
+            Context db = new Context();
+            Sala s1 =new Sala() { Nazwa = "Bałtyk", LiczbaMiejscWRzedzie = 10, LiczbaRzedow = 8 };
+            Film f1 =new Film() { Tytul = "Konan Destylator", CzasTrwania = 90, Gatunek = "Fantasy" };
+            Seans se1 =
+             new Seans()
+             {
+                 Date = new DateTime(2019, 1, 20, 12, 00, 00),
+                 Film = f1,
+                 Sala = s1
+             };
+
+            Bilet bil1 = new Bilet(se1,20.00, 5, 5);
+            Bilet bil2 = new Bilet(se1,22.00, 5, 6);
+            se1.Bilety.Add(bil1);
+            se1.Bilety.Add(bil2);
+            s1.Seanse.Add(se1);
+            f1.Seanse.Add(se1);
+            db.Seanse.Add(se1);
+            db.Sale.Add(s1);
+            db.Filmy.Add(f1);
+
+
+            db.SaveChanges();
+
         }
     }
 }
