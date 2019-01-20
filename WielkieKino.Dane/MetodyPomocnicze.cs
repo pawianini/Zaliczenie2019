@@ -60,7 +60,7 @@ namespace WielkieKino.Dane
         public int LiczbaWolnychMiejscWSali(List<Bilet> sprzedaneBilety, Seans seansDoSprawdzenia)
         {
             // Właściwa odpowiedź: np. na pierwszy seans z listy seansów w klasie SkladDanych są 72 miejsca
-            int poj = seansDoSprawdzenia.Sala.LiczbaMiejscWRzedzie * seansDoSprawdzenia.Sala.LiczbaMiejscWRzedzie;
+            int poj = seansDoSprawdzenia.Sala.LiczbaMiejscWRzedzie * seansDoSprawdzenia.Sala.LiczbaRzedow;
             int spr=0;
             foreach (var item in sprzedaneBilety)
             {
